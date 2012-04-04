@@ -2,15 +2,17 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :save_referrer, :only => :edit
 
   def new
-     # Building the resource with information that MAY BE available from omniauth!
-     build_resource(:first_name => session[:omniauth] && session[:omniauth]['user_info'] && session[:omniauth]['user_info']['first_name'], 
-         :last_name => session[:omniauth] && session[:omniauth]['user_info'] && session[:omniauth]['user_info']['last_name'],
-         :email => session[:omniauth_email] )
-     render_with_scope :new
+    # Building the resource with information that MAY BE available from omniauth!
+    build_resource(
+      :first_name => session[:omniauth] && session[:omniauth]['user_info'] && session[:omniauth]['user_info']['first_name'],
+      :last_name => session[:omniauth] && session[:omniauth]['user_info'] && session[:omniauth]['user_info']['last_name'],
+      :email => session[:omniauth_email]
+    )
+    render :new
   end
 
   def create
-    build_resource 
+    build_resource
 
     if session[:omniauth] && @user.errors[:email][0] =~ /has already been taken/
       user = User.find_by_email(@user.email)
@@ -22,7 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
     super
     session[:omniauth] = nil unless @user.new_record?
   end
-  
+
   def build_resource(*args)
     super
 
@@ -35,4 +37,9 @@ class RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(scope)
     session[:referrer] ? session[:referrer] : root_path
   end
+
+  def save_referrer
+    session[:referrer] = request.referrer
+  end
+
 end

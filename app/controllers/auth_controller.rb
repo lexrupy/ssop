@@ -1,9 +1,13 @@
+# encoding: utf-8
 class AuthController < ApplicationController
   before_filter :authenticate_user!, :except => [:access_token]
   skip_before_filter :verify_authenticity_token, :only => [:access_token]
 
   def welcome
-    render :text => "Hiya! #{current_user.first_name} #{current_user.last_name}"
+    respond_to do |format|
+      format.html
+      format.js { render :json => { welcome: current_user.full_name } }
+    end
   end
 
   def authorize
@@ -39,10 +43,12 @@ class AuthController < ApplicationController
       :provider => 'josh_id',
       :id => current_user.id.to_s,
       :info => {
-         :email => current_user.email, # change if required
+        :name => current_user.full_name,
+        :email => current_user.email,
+        :first_name => current_user.first_name,
+        :last_name => current_user.last_name
       }
     }
-
     render :json => hash.to_json
   end
 

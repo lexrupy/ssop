@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authentication Center</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="span3">&nbsp;</div>
+      <div class="span6 login-branding">
+        <h2>Authentication Center</h2>
+      </div>
+      <div class="span3">&nbsp;</div>
+    </div>
+
+    <div class="row">
+      <div class="span3">&nbsp;</div>
+      <div class="content span6">
+        <% flash.each do |name, msg| %>
+          <%= flash_message(name, msg) %>
+        <% end %>
+        <div class="wrapper login">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="span3">&nbsp;</div>
+    </div>
+  </div>
+
+</body>
+</html>

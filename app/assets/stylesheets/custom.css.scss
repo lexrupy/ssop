@@ -1,0 +1,98 @@
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+
+@import "bootstrap";
+
+//@import "bootstrap-responsive";
+
+body {
+  background: #FBFBFB image-url('bg.jpg') 0 0 repeat;
+  padding-top: 60px;
+}
+
+#{$all-text-inputs} {
+  line-height: 23px;
+  height: 26px;
+  font-size: 1.4em;
+}
+
+label, a {
+  font-size: 1.2em;
+}
+
+.help-inline {color:#999999}
+.help-block {margin-top:-4px;margin-bottom:10px}
+
+.content .wrapper  {
+  background: #fff;
+  padding: 8px;
+  @include border-radius(4px);
+  border: 1px solid #CCC;
+}
+
+.sidebar .wrapper  {
+  padding: 8px 1px;
+  @include border-radius(4px);
+  border: 1px solid #CCC;
+  .alert {
+    margin: 0 8px;
+  }
+}
+
+.title {
+  height: 54px;
+  line-height: 54px;
+  padding: 0 15px;
+  background-color: #F4F4F4;
+  border-bottom: 1px solid #CCC;
+  overflow: hidden;
+  margin: -8px -8px 10px -8px;
+  @include border-top-left-radius(4px);
+  @include border-top-right-radius(4px);
+  @include linear-gradient(#F4F4F4, #EFEFEF);
+  h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #555;
+    text-shadow: 1px 1px 0 white;
+    float: left;
+    line-height: 54px;
+  }
+  .btn {
+    float: right;
+    margin-top: 12px;
+    margin-left: 8px;
+  }
+}
+
+.container .signup {
+  background: #fff;
+  padding: 8px 8px 8px 10px;
+  @include border-radius(4px);
+  border: 1px solid #ACACAC;
+}
+
+.login-branding {
+  text-align: center;
+  margin-bottom: 30px;
+  h2 {
+   font-size: 20px;
+   text-transform: uppercase;
+   color: #555;
+   text-shadow: 1px 1px 0 #CBCBCB;
+  }
+}
+
+.footer-content {
+  font-size: 1.1em;
+  margin-top: 20px;
+  height: 40px;
+  padding-top: 10px;
+  color: #555;
+  border-top: 1px solid #CCC;
+  .copyright {
+    float: right;
+  }
+}
+

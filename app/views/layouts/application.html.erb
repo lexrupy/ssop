@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OauthProviderDemo</title>
-  <%= stylesheet_link_tag :application %>
-  <%= javascript_include_tag :application %>
-  <%= csrf_meta_tag %>
+  <title>Authentication Center</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
 
-<%= yield %>
+    <div class="row">
+      <div class="flash">
+        <% flash.each do |name, msg| %>
+          <%= flash_message(name, msg) %>
+        <% end %>
+      </div>
 
+      <% if content_for?(:sidebar) %>
+
+        <div class="sidebar span3">
+          <div class="wrapper well">
+            <%= yield(:sidebar) %>
+          </div>
+        </div>
+
+      <% end %>
+
+      <div class="content<%= content_for?(:sidebar) ? ' span9' : '' %>" id="content">
+        <div class="wrapper">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="footer-content">
+        <div class="copyright">&copy; 2012, Alexandre da Silva</div>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>

@@ -2,7 +2,8 @@ class AccessGrant < ActiveRecord::Base
   belongs_to :user
   belongs_to :client
   before_create :generate_tokens
-
+  #attr_accessible :access_token, :access_token_expires_at, :client_id,
+  #                :code, :refresh_token, :user_id
 
   def self.prune!
     delete_all(["created_at < ?", 3.days.ago])
@@ -24,7 +25,7 @@ class AccessGrant < ActiveRecord::Base
     end
   end
 
-  # Note: This is currently configured through devise, and matches the AuthController access token life 
+  # Note: This is currently configured through devise, and matches the AuthController access token life
   def start_expiry_period!
     self.update_attribute(:access_token_expires_at, Time.now + Devise.timeout_in)
   end
