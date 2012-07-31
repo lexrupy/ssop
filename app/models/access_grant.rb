@@ -19,9 +19,9 @@ class AccessGrant < ActiveRecord::Base
 
   def redirect_uri_for(redirect_uri)
     if redirect_uri =~ /\?/
-      redirect_uri + "&code=#{code}&response_type=code"
+      redirect_uri + "&code=#{code}&response_type=code&state=#{state}"
     else
-      redirect_uri + "?code=#{code}&response_type=code"
+      redirect_uri + "?code=#{code}&response_type=code&state=#{state}"
     end
   end
 

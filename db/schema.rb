@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403162759) do
+ActiveRecord::Schema.define(:version => 20120711180145) do
 
   create_table "access_grants", :force => true do |t|
     t.string   "code"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120403162759) do
     t.integer  "client_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.string   "state"
   end
 
   add_index "access_grants", ["client_id"], :name => "index_access_grants_on_client_id"
